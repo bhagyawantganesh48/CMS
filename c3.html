@@ -9,9 +9,7 @@
     <title>Shree Gajanan Canteen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="responsive-styles.css">
-    <link rel="stylesheet" href="universal-fixes.css">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script src="firebase-config.js"></script>
     <script src="js/api-helper.js"></script>
     <script src="js/order-sync.js"></script>
     
@@ -1825,13 +1823,7 @@
                                 <div class="menu-item" data-name="${item.name}" data-price="${item.price}">
                                     <div class="item-image-container">
                                         <i class="fas fa-leaf veg-icon"></i>
-                                        <img 
-                                            src="${imageSrc}" 
-                                            alt="${item.name}" 
-                                            loading="lazy"
-                                            onerror="this.onerror=null; this.src='placeholder.svg'; if(this.src.includes('placeholder.svg')){this.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';}"
-                                            onload="this.classList.add('loaded')"
-                                        >
+                                        <img src="${imageSrc}" alt="${item.name}" onerror="this.src='placeholder.svg'">
                                     </div>
                                     <div class="item-details">
                                         <h4>${item.name}</h4>
@@ -1973,12 +1965,6 @@
                         
                         console.log('✅ Order saved to central database:', adminOrder);
                         console.log('📊 Total orders in system:', centralOrders.length);
-                        
-                        // UNIVERSAL ORDER SYNC - Works across all devices
-                        if (window.orderManager) {
-                            window.orderManager.addOrder(adminOrder);
-                            console.log('🌐 Order synced to universal system');
-                        }
                     } catch (error) {
                         console.error('❌ Error saving to central orders:', error);
                     }
