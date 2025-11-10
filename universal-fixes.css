@@ -1,0 +1,359 @@
+/* ================================================
+   UNIVERSAL RESPONSIVE FIXES
+   Auto-adjusts for all devices: Mobile, Tablet, Desktop
+   ================================================ */
+
+/* Reset and Base Improvements */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    overflow-x: hidden !important;
+    width: 100vw;
+    max-width: 100%;
+}
+
+/* Mobile Container Responsive Fix */
+.mobile-container {
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Auth Container Responsive */
+#auth-container,
+#table-selection-container {
+    width: 90% !important;
+    max-width: 450px !important;
+    margin: 20px auto;
+}
+
+/* Header Responsive */
+header {
+    flex-wrap: wrap !important;
+    padding: 15px 20px !important;
+}
+
+header .logo h2 {
+    font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+}
+
+.header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.header-btn {
+    font-size: clamp(0.8rem, 2vw, 1rem) !important;
+    padding: 8px 12px !important;
+}
+
+/* Menu Items Responsive Grid */
+.menu {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 20px !important;
+    padding: 20px !important;
+}
+
+.menu-item {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.menu-item img {
+    width: 100% !important;
+    height: 200px !important;
+    object-fit: cover !important;
+    background: #f0f0f0 !important;
+}
+
+/* Categories Navigation Responsive */
+.categories {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin;
+    padding: 15px 10px !important;
+}
+
+.categories::-webkit-scrollbar {
+    height: 4px;
+}
+
+.categories::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+.category-btn {
+    white-space: nowrap !important;
+    font-size: clamp(0.85rem, 2vw, 1rem) !important;
+    padding: 10px 20px !important;
+}
+
+/* Search Container Responsive */
+.search-container {
+    padding: 15px 20px !important;
+}
+
+.search-container input {
+    font-size: clamp(0.9rem, 2vw, 1rem) !important;
+}
+
+/* Order Summary Footer Responsive */
+.order-summary {
+    padding: 15px 20px !important;
+    flex-wrap: wrap !important;
+}
+
+#view-order-btn {
+    font-size: clamp(0.9rem, 2vw, 1.1rem) !important;
+    padding: 12px 24px !important;
+}
+
+/* Modal Responsive */
+.modal-content {
+    width: 95% !important;
+    max-width: 600px !important;
+    max-height: 90vh !important;
+    margin: 20px auto !important;
+}
+
+.modal-body {
+    max-height: 60vh !important;
+    overflow-y: auto !important;
+}
+
+/* Table Selection Responsive */
+.table-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
+    gap: 10px !important;
+}
+
+.table-btn {
+    padding: 15px !important;
+    font-size: clamp(1.2rem, 3vw, 1.5rem) !important;
+}
+
+/* ================================================
+   MOBILE SPECIFIC (< 768px)
+   ================================================ */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0 !important;
+    }
+
+    #auth-container,
+    #table-selection-container {
+        width: 95% !important;
+        padding: 30px 20px !important;
+        margin: 10px auto !important;
+    }
+
+    .menu {
+        grid-template-columns: 1fr !important;
+        padding: 15px !important;
+        gap: 15px !important;
+    }
+
+    .menu-item {
+        max-width: 100% !important;
+    }
+
+    header {
+        padding: 12px 15px !important;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 8px;
+    }
+
+    .modal-content {
+        width: 98% !important;
+        margin: 10px auto !important;
+    }
+
+    .payment-options {
+        flex-direction: column !important;
+    }
+
+    .payment-option {
+        width: 100% !important;
+    }
+
+    /* Fix for small mobile screens */
+    .table-number-display {
+        font-size: 2em !important;
+        padding: 20px !important;
+    }
+
+    .auth-btn {
+        font-size: 1rem !important;
+        padding: 12px !important;
+    }
+}
+
+/* ================================================
+   TABLET SPECIFIC (768px - 1024px)
+   ================================================ */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .menu {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 18px !important;
+    }
+
+    #auth-container,
+    #table-selection-container {
+        width: 80% !important;
+        max-width: 500px !important;
+    }
+
+    .table-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* ================================================
+   DESKTOP SPECIFIC (> 1024px)
+   ================================================ */
+@media screen and (min-width: 1024px) {
+    .menu {
+        grid-template-columns: repeat(3, 1fr) !important;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .mobile-container {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    #auth-container,
+    #table-selection-container {
+        width: 100% !important;
+        max-width: 450px !important;
+    }
+}
+
+/* ================================================
+   LARGE DESKTOP (> 1440px)
+   ================================================ */
+@media screen and (min-width: 1440px) {
+    .menu {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+/* ================================================
+   IMAGE LOADING FIXES
+   ================================================ */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.menu-item img {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    position: relative;
+}
+
+/* Loading placeholder for images */
+.menu-item img:not([src]),
+.menu-item img[src=""],
+.menu-item img[src="placeholder.jpg"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+}
+
+.menu-item img:not([src])::before,
+.menu-item img[src=""]::before {
+    content: '🍽️';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    opacity: 0.5;
+}
+
+/* Lazy loading support */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* ================================================
+   LANDSCAPE MODE FIXES
+   ================================================ */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    #auth-container,
+    #table-selection-container {
+        margin: 10px auto !important;
+        padding: 20px !important;
+    }
+
+    .table-number-display {
+        padding: 15px !important;
+        font-size: 2em !important;
+    }
+
+    .modal-content {
+        max-height: 85vh !important;
+    }
+}
+
+/* ================================================
+   PRINT STYLES
+   ================================================ */
+@media print {
+    .header-actions,
+    .search-container,
+    .categories,
+    .order-summary,
+    button {
+        display: none !important;
+    }
+
+    .menu {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* ================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ================================================ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .menu-item {
+        border: 2px solid #000 !important;
+    }
+
+    button {
+        border: 2px solid currentColor !important;
+    }
+}

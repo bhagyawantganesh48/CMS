@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gajanan Canteen - Admin Portal (Persistent DB)</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="universal-fixes.css">
+    <script src="firebase-config.js"></script>
     
     <style>
         /* CSS STYLES (Optimized and Polished) */
@@ -585,7 +587,23 @@
                 let orderId = 1;
                 
                 // ============================================
-                // FIRST: Read from central orders database
+                // PRIORITY: Read from Universal Order Manager (Cross-device sync)
+                // ============================================
+                try {
+                    if (window.orderManager) {
+                        const universalOrders = window.orderManager.getAllOrders();
+                        if (Array.isArray(universalOrders) && universalOrders.length > 0) {
+                            console.log(`🌐 Loading ${universalOrders.length} orders from universal system`);
+                            allOrders.push(...universalOrders);
+                            return allOrders; // Return early if universal orders exist
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error reading universal orders:', e);
+                }
+                
+                // ============================================
+                // FALLBACK: Read from central orders database
                 // ============================================
                 try {
                     const centralOrders = JSON.parse(localStorage.getItem('canteen_orders')) || [];
@@ -2082,12 +2100,20 @@
 
             // Listen for storage changes (real-time updates)
             window.addEventListener('storage', (e) => {
-                if (e.key === 'loginLog' || e.key === 'signupLog' || e.key === 'canteen_orders' || e.key === 'canteen_users') {
+                if (e.key === 'loginLog' || e.key === 'signupLog' || e.key === 'canteen_orders' || e.key === 'canteen_users' || e.key === 'universal_orders') {
                     console.log('🔔 Real-time update detected:', e.key);
                     renderActivityLog();
                     renderDashboard();
                     renderUserTable();
                 }
+            });
+
+            // Universal Order Manager listener - Cross-device sync
+            window.addEventListener('ordersUpdated', (e) => {
+                console.log('🌐 Universal orders updated from another device');
+                renderActivityLog();
+                renderDashboard();
+                renderUserTable();
             });
 
             // Custom event listener for same-window updates
